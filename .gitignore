@@ -1,0 +1,18 @@
+# data & training outputs (too large for git)
+dataset/
+*_dataset/
+Sugar-Cane-Disease-Model-*/
+runs/
+*.pt
+*.onnx
+
+# secrets
+.env
+*.key
+
+# python / notebooks
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
