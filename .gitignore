@@ -16,3 +16,16 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 venv/
+
+# generated datasets and evaluation outputs
+dataset_v2/
+dataset_clean/
+weights/
+experiments/out*/yolo_val/
+experiments/out*/onnx_val/
+experiments/out*/plantdoc_yolo/
+
+# LaTeX build files
+paper/*.aux
+paper/*.log
+paper/*.out

@@ -1,0 +1,371 @@
+Ultralytics 8.4.118 🚀 Python-3.12.13 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14913MiB)
+engine/trainer: agnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=False, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.1, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=/content/dataset/crop_dataset.yaml, degrees=10.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, end2end=None, epochs=100, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.5, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, keras=False, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.1, mode=train, model=yolov8n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=exp1-2, nbs=64, nms=False, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=runs/crop_detect, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=/content/runs/detect/runs/crop_detect/exp1-2, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=2.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]             
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]                
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]             
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]               
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]                 
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]                  
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]                 
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f             [384, 256, 1]                 
+ 22        [15, 18, 21]  1    752287  ultralytics.nn.modules.head.Detect           [5, 16, None, [64, 128, 256]] 
+Model summary: 130 layers, 3,011,823 parameters, 3,011,807 gradients, 8.2 GFLOPs
+
+Transferred 355/355 items from pretrained weights
+Freezing layer 'model.22.dfl.conv.weight'
+AMP: running Automatic Mixed Precision (AMP) checks...
+AMP: checks passed ✅
+WARNING ⚠️ train: Slow image access detected (ping: 0.4±0.1 ms, read: 22.3±16.1 MB/s, size: 19.7 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips/
+train: Scanning /content/drive/MyDrive/dataset/labels/train... 9697 images, 38 backgrounds, 50 corrupt: 100% ━━━━━━━━━━━━ 9716/9716 209.1it/s 46.5s
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_095648_jpg.rf.39f0a0ca54b94fae192e2c7c1e1f96be.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_095648_jpg.rf.6be2610c81a5e4112675a48f06ce84e2.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_095648_jpg.rf.7bb86a8e58f57771e51db5a6bee09e77.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_103217_jpg.rf.4ee04e4c94bcfbaf22a2cbe62dbe4889.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_103217_jpg.rf.a64ec401397566eb1c9cbeb85faf8d2f.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_103217_jpg.rf.fdedaf12e03bcaa7d9eb96f0f2593200.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_112003_jpg.rf.1dc948e462631dec9d26a61742b9903b.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_112003_jpg.rf.339bbed006eebfb521299fa6b73274c4.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_112003_jpg.rf.4d1aa48db9be03001408cf54607741a1.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123642_jpg.rf.5b456dd5b1806b468e74469bfed2c08f.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123642_jpg.rf.c88e69a14e730f47cdd4e4c3f7288c52.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123642_jpg.rf.f7d201b7b89efa9977b0449869c732fb.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123656_jpg.rf.2ea7c8842db34de1dd7558c3ed8e37d9.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123656_jpg.rf.c219b74398f58cfbc4ada56a0a308a7a.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123656_jpg.rf.d1607215c5988c7595b2972bee931281.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123704_jpg.rf.65097dc80c3152cff5127321c41d730e.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123704_jpg.rf.775e3d1b05169f0da6b7c49a08b22f71.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_123704_jpg.rf.84bc9e1ae07b5b38ee8b68f35d29ad94.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_125009_jpg.rf.62c4fa0453f20aaa5749cea2823366d7.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_125009_jpg.rf.969dbbf89ce07c20eec7da61fe71f157.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_125009_jpg.rf.a4e25c73c539b07796938346592921ad.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_131600_jpg.rf.4a7e9770acf7198b45183c3e8507671c.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_131600_jpg.rf.b6ed78bc28084c3f0c2bfe12c143580d.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_131600_jpg.rf.fa0a0eb08bc714b41b80595bdb89dd9a.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_152402_jpg.rf.7da1b3e1a3754a0bf9f65717a2a728db.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_152402_jpg.rf.b15ad6177e3b2235beae77ccb21d7ed9.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/rice_IMG_20190419_152402_jpg.rf.fa0e78414f786f6368edc115d5cee7fc.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1038_jpg.rf.7bf8317cb628de55aaa49b44d76bf928.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1038_jpg.rf.93dd85675b3d0cc9b9e5be67581c9432.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_105_jpg.rf.2cc092f915df031745bb3d11064c2b41.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1270_jpg.rf.c5eebb032355a5c83b2344cd0f58d368.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1277_jpg.rf.39e2f4d52919e241a422ca2e484d33b7.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1314_jpg.rf.22b84a676d1155bf96c7cffc16e10a02.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1314_jpg.rf.95074a86bbfaf5cb8a08431a42f7ee64.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1329_jpg.rf.b887ae93ebabd272f4cc3df3c182afb1.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1329_jpg.rf.dc4b9ceceb73030c1b395fc408584af3.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1405_jpg.rf.6b41a1056e2af2edafbfc44c4aa0c084.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1405_jpg.rf.ddc697515c61e70981f09ef50821d143.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1423_jpg.rf.ac656923ec095e1ae8dff166fcf62710.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1638_jpg.rf.4d0b707a0d281d677b33b7d7b7d971ca.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1638_jpg.rf.8500da81c408eb841fb925e091e51087.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1769_jpg.rf.b0a26c848172d12481a15b76d562cbe6.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/soybean_healthy_1769_jpg.rf.dd1c8c60e5d14cb3b8a88e737a543747.jpg: 1 duplicate labels removed
+train: /content/drive/MyDrive/dataset/images/train/sugarcane_download-1-_jpg.rf.87c4c84a50d2e12e00adbde6c0dcddaa.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/sugarcane_download-1-_jpg.rf.8d38d6099961ad06a10c7e33358c92b5.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/sugarcane_download-1-_jpg.rf.ccc82e97cd447b059c63dde9a03be66d.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/sugarcane_download-2-_jpg.rf.382c39e3bdc594b5fe6489622e3260b0.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/sugarcane_download-2-_jpg.rf.b44bb81b9b134b874d4f3baba81079e4.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/sugarcane_download-2-_jpg.rf.dea7be548f508a7f4e1906993384eb9f.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_Barley_Yellow_Dwarf_Virus_KSU--1-_jpg.rf.179f088ded40bfad62af2649d6476ec7.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_Barley_Yellow_Dwarf_Virus_KSU--1-_jpg.rf.51cd43be1d12987f23380818d5234ad5.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_Barley_Yellow_Dwarf_Virus_KSU--1-_jpg.rf.7ea52a747cb57dce3a36c882ede25b5d.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220103_112047_383_jpg.rf.0513d9efd254c62c33217443cdfcabdd.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220103_112048_500_jpg.rf.494b5c8856ba2554e3eda2924e4245e4.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220103_112048_500_jpg.rf.955c96e6e4465d89bf30325a4202730c.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220103_114726_808_jpg.rf.0274da1cdbbf713d48ef8310ab55ce9e.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220103_114726_808_jpg.rf.637b0f89686f03345394aaa788841a4c.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220113_152540_064_jpg.rf.734d18208996d54128b0c3c41ff45e2f.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220113_152540_064_jpg.rf.b02ee269eb446456c817c791f40ed825.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220113_152540_064_jpg.rf.e1e646e747a77d5413e25352dfc2fd5d.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220115_125403_221_jpg.rf.3e2c8842f375d507ba0761f9af098dca.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220115_125403_221_jpg.rf.58dd6a214f3c1a579215455bb12b9d6d.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_IMG_20220115_125403_221_jpg.rf.d430e76bf5a953f8fcf81db0dced7de9.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_Onion-yellow-dwarf-virus-walpaper_jpg.rf.2899f49415c7d95eac6c146377147072.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_Onion-yellow-dwarf-virus-walpaper_jpg.rf.76626e19300798e55070d36cf4ff4660.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: /content/drive/MyDrive/dataset/images/train/wheat_Onion-yellow-dwarf-virus-walpaper_jpg.rf.850724a72d91ab651cce738bb0e35761.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+train: New cache created: /content/drive/MyDrive/dataset/labels/train.cache
+WARNING ⚠️ Box and segment counts should be equal, but got len(segments) = 2568, len(boxes) = 34677. To resolve this only boxes will be used and all segments will be removed. To avoid this please supply either a detect or segment dataset, not a detect-segment mixed dataset.
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+WARNING ⚠️ val: Slow image access detected (ping: 0.6±0.5 ms, read: 11.8±9.9 MB/s, size: 21.6 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips/
+val: Scanning /content/drive/MyDrive/dataset/labels/val... 1098 images, 35 backgrounds, 3 corrupt: 100% ━━━━━━━━━━━━ 1130/1130 134.6it/s 8.4s
+val: /content/drive/MyDrive/dataset/images/val/rice_IMG_20190419_123551_jpg.rf.38080395714bb40d9e736a1f62f63ff8.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+val: /content/drive/MyDrive/dataset/images/val/rice_IMG_20190419_123701_jpg.rf.a8aaf6fb1b4deb4a2b7bb5715b62a480.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+val: /content/drive/MyDrive/dataset/images/val/rice_IMG_20190419_140945_jpg.rf.524729cab375ca2b4e9c0e125a179e73.jpg: ignoring corrupt image/label: labels mix segment and detection rows
+val: New cache created: /content/drive/MyDrive/dataset/labels/val.cache
+WARNING ⚠️ Box and segment counts should be equal, but got len(segments) = 244, len(boxes) = 3802. To resolve this only boxes will be used and all segments will be removed. To avoid this please supply either a detect or segment dataset, not a detect-segment mixed dataset.
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically... 
+optimizer: MuSGD(lr=0.01, momentum=0.9) with parameter groups 57 weight(decay=0.0), 64 weight(decay=0.0005), 63 bias(decay=0.0)
+Plotting labels to /content/runs/detect/runs/crop_detect/exp1-2/labels.jpg... 
+Image sizes 640 train, 640 val
+Using 2 dataloader workers
+Logging results to /content/runs/detect/runs/crop_detect/exp1-2
+Starting training for 100 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      1/100      2.63G      1.547      2.274      1.717         34        640: 100% ━━━━━━━━━━━━ 605/605 3.0it/s 3:21
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 2.9it/s 12.6s
+                   all       1127       3802      0.302      0.516      0.414      0.223
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      2/100      3.27G      1.433      1.652      1.611          6        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:11
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.2s
+                   all       1127       3802      0.498      0.511      0.482      0.286
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      3/100      3.27G      1.482       1.61      1.645          4        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:10
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.6it/s 10.1s
+                   all       1127       3802      0.502      0.437      0.438      0.236
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      4/100      3.27G      1.471      1.576      1.654         11        640: 100% ━━━━━━━━━━━━ 605/605 3.0it/s 3:23
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 2.9it/s 12.2s
+                   all       1127       3802      0.532      0.553      0.498      0.289
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      5/100      3.28G      1.436      1.488      1.606         20        640: 100% ━━━━━━━━━━━━ 605/605 3.0it/s 3:23
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 2.9it/s 12.3s
+                   all       1127       3802      0.728      0.522       0.54       0.33
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      6/100      3.28G      1.408      1.424      1.584         11        640: 100% ━━━━━━━━━━━━ 605/605 3.0it/s 3:22
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.0it/s 11.9s
+                   all       1127       3802      0.618      0.577      0.559       0.33
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      7/100      3.28G      1.378      1.387      1.573         11        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:16
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.0it/s 11.9s
+                   all       1127       3802      0.685      0.606      0.608       0.37
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      8/100      3.28G      1.373      1.353       1.54          9        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:11
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.6it/s 10.0s
+                   all       1127       3802      0.674      0.612      0.597      0.362
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      9/100      3.28G      1.347      1.328       1.53         13        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:11
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.3it/s 11.1s
+                   all       1127       3802      0.686      0.639       0.63      0.395
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     10/100      3.28G      1.338      1.292       1.52          5        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:09
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.3s
+                   all       1127       3802      0.664       0.63      0.625      0.399
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     11/100      3.28G      1.324      1.278      1.507         13        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:07
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.6it/s 10.1s
+                   all       1127       3802       0.71      0.629      0.637      0.404
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     12/100      3.28G      1.312      1.252      1.507          9        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:06
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.3it/s 11.0s
+                   all       1127       3802      0.719      0.621       0.64      0.391
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     13/100      3.28G      1.302      1.235      1.496         11        640: 100% ━━━━━━━━━━━━ 605/605 3.3it/s 3:06
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.6it/s 9.9s
+                   all       1127       3802      0.692      0.664      0.653      0.417
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     14/100      3.28G      1.293      1.237      1.487          2        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:07
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.1s
+                   all       1127       3802      0.696      0.656      0.644      0.419
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     15/100      3.28G      1.276      1.209      1.487         13        640: 100% ━━━━━━━━━━━━ 605/605 3.3it/s 3:05
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.5it/s 10.3s
+                   all       1127       3802      0.733      0.672      0.669      0.412
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     16/100      3.28G      1.275      1.199      1.481          3        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:07
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.0it/s 12.0s
+                   all       1127       3802      0.723      0.653      0.674      0.428
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     17/100      3.28G      1.283      1.195      1.472         13        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:11
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.3s
+                   all       1127       3802      0.713      0.673      0.667      0.431
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     18/100      3.28G      1.261      1.175      1.462         13        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:11
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.9it/s 9.3s
+                   all       1127       3802       0.72      0.666      0.672      0.439
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     19/100      3.28G      1.259      1.168      1.464          4        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:08
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.6s
+                   all       1127       3802      0.754      0.677      0.695      0.436
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     20/100      3.28G       1.26      1.174      1.453          7        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:10
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.1s
+                   all       1127       3802      0.749      0.695      0.698      0.448
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     21/100      3.28G       1.25       1.15      1.456          9        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:09
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.4it/s 10.6s
+                   all       1127       3802      0.746      0.689      0.691      0.443
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     22/100      3.28G      1.238      1.141       1.45          7        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:10
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.3it/s 10.9s
+                   all       1127       3802      0.753      0.694      0.699      0.461
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     23/100      3.28G      1.233      1.134      1.444         16        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:15
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.6it/s 10.0s
+                   all       1127       3802      0.739      0.692        0.7      0.457
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     24/100      3.28G      1.237      1.137      1.442          8        640: 100% ━━━━━━━━━━━━ 605/605 3.0it/s 3:20
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.5s
+                   all       1127       3802       0.75      0.658      0.695      0.458
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     25/100      3.28G      1.221      1.126      1.438         11        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:15
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.7s
+                   all       1127       3802      0.756      0.713      0.702      0.463
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     26/100      3.28G      1.225      1.124      1.441          9        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:14
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.7s
+                   all       1127       3802      0.729      0.712      0.702      0.453
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     27/100      3.28G      1.221      1.106      1.434          5        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:12
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.6s
+                   all       1127       3802      0.754      0.716      0.711      0.465
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     28/100      3.28G      1.221      1.112      1.435          8        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:12
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.4it/s 10.5s
+                   all       1127       3802      0.733      0.707      0.707      0.477
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     29/100      3.28G      1.213      1.092      1.426         11        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:11
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.7it/s 9.8s
+                   all       1127       3802      0.745      0.705      0.706      0.468
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     30/100      3.28G      1.214      1.088      1.423         12        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:16
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.7it/s 9.8s
+                   all       1127       3802      0.772      0.716      0.725      0.477
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     31/100      3.28G       1.22      1.093      1.427         32        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:14
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.6it/s 10.1s
+                   all       1127       3802      0.764      0.713      0.717      0.472
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     32/100      3.28G      1.209      1.083      1.419          4        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:08
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.3it/s 11.0s
+                   all       1127       3802      0.778        0.7      0.723      0.477
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     33/100      3.28G      1.208      1.081      1.416          6        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:08
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.9it/s 9.3s
+                   all       1127       3802      0.758      0.731      0.731      0.488
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     34/100      3.28G      1.204      1.082      1.421          6        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:09
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.5s
+                   all       1127       3802      0.776      0.721      0.735      0.486
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     35/100      3.28G      1.197      1.069       1.41          8        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:09
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.3it/s 11.0s
+                   all       1127       3802      0.765      0.742      0.735      0.487
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     36/100      3.28G      1.196      1.058      1.412         26        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:10
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.7it/s 9.7s
+                   all       1127       3802      0.767      0.733      0.733      0.496
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     37/100      3.49G       1.19      1.062      1.411         60        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:10
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.6s
+                   all       1127       3802      0.763      0.721      0.735      0.497
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     38/100      3.49G      1.189      1.059      1.404          8        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:13
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.2s
+                   all       1127       3802      0.781      0.723      0.736      0.503
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     39/100      3.49G      1.196      1.054      1.406          6        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:07
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.4it/s 10.6s
+                   all       1127       3802      0.773      0.732      0.735      0.496
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     40/100      3.49G      1.176      1.046      1.406         10        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:08
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.3s
+                   all       1127       3802      0.767      0.734      0.733      0.499
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     41/100      3.49G      1.173      1.029      1.395          8        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:08
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.3it/s 11.1s
+                   all       1127       3802      0.765      0.733      0.732      0.501
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     42/100      3.49G      1.185      1.036      1.397         11        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:06
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.5it/s 10.3s
+                   all       1127       3802      0.762      0.734      0.738      0.506
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     43/100      3.49G      1.176      1.027      1.397          9        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:09
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.7s
+                   all       1127       3802      0.783      0.733      0.744      0.507
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     44/100      3.49G      1.177      1.031      1.393         11        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:13
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.0it/s 12.0s
+                   all       1127       3802      0.785      0.731      0.742      0.505
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     45/100      3.49G      1.175      1.024      1.385         17        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:10
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.7it/s 9.7s
+                   all       1127       3802      0.758       0.74      0.742       0.51
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     46/100      3.49G      1.172      1.021      1.392          5        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:14
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.4it/s 10.7s
+                   all       1127       3802      0.781      0.726      0.745      0.516
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     47/100      3.49G      1.159      1.015      1.392         11        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:13
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.3s
+                   all       1127       3802      0.774      0.744      0.753      0.521
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     48/100      3.49G      1.169      1.011      1.379         23        640: 100% ━━━━━━━━━━━━ 605/605 3.2it/s 3:11
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.1it/s 11.7s
+                   all       1127       3802      0.772      0.746      0.752      0.514
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     49/100      3.49G      1.165       1.01      1.381         11        640: 100% ━━━━━━━━━━━━ 605/605 3.3it/s 3:06
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.6it/s 10.1s
+                   all       1127       3802      0.769      0.747      0.754      0.522
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     50/100      3.49G      1.155      1.012      1.388         15        640: 100% ━━━━━━━━━━━━ 605/605 3.1it/s 3:13
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 36/36 3.2it/s 11.2s
+                   all       1127       3802      0.768      0.755      0.748      0.516
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+     51/100      3.49G      1.203      1.039      1.393        114        640: 7% ╸─────────── 48/605 7.5it/s 14.7s<1:15

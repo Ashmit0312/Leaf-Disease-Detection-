@@ -1,0 +1,15 @@
+type,splits,pairs
+near_phash,test-test,11
+near_phash,test-train,106
+near_phash,test-val,39
+near_phash,train-train,1345
+near_phash,train-val,176
+near_phash,val-val,34
+near_phash_dihedral,test-test,9
+near_phash_dihedral,test-train,341
+near_phash_dihedral,test-val,18
+near_phash_dihedral,train-val,525
+near_phash_dihedral,val-val,6
+same_source_stem,test-train,16
+same_source_stem,test-val,2
+same_source_stem,train-val,37

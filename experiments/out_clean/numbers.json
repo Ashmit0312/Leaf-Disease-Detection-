@@ -1,0 +1,158 @@
+{
+  "dedup": {
+    "images_total": {
+      "value": 11346,
+      "source": "dedup_report.csv"
+    },
+    "images_train": {
+      "value": 10053,
+      "source": "dedup_report.csv"
+    },
+    "images_val": {
+      "value": 880,
+      "source": "dedup_report.csv"
+    },
+    "images_test": {
+      "value": 413,
+      "source": "dedup_report.csv"
+    },
+    "leaked_val": {
+      "value": 0,
+      "source": "dedup_report.csv"
+    },
+    "leaked_val_pct": {
+      "value": 0.0,
+      "source": "dedup_report.csv"
+    },
+    "leaked_test": {
+      "value": 0,
+      "source": "dedup_report.csv"
+    },
+    "leaked_test_pct": {
+      "value": 0.0,
+      "source": "dedup_report.csv"
+    },
+    "pairs_near_phash_train-train": {
+      "value": 1689,
+      "source": "dedup_summary.csv"
+    },
+    "pairs_near_phash_val-val": {
+      "value": 20,
+      "source": "dedup_summary.csv"
+    },
+    "pairs_near_phash_test-test": {
+      "value": 2,
+      "source": "dedup_summary.csv"
+    },
+    "pairs_near_phash_dihedral_val-val": {
+      "value": 2,
+      "source": "dedup_summary.csv"
+    },
+    "source_groups_spanning_splits": {
+      "value": 0,
+      "source": "dedup_report.csv"
+    },
+    "cross_crop_duplicate_pairs": {
+      "value": 0,
+      "source": "dedup_report.csv"
+    }
+  },
+  "stats": {
+    "sugarcane_images": {
+      "value": 3011,
+      "source": "class_totals.csv"
+    },
+    "sugarcane_boxes": {
+      "value": 3529,
+      "source": "class_totals.csv"
+    },
+    "sugarcane_median_box_area_pct": {
+      "value": 52.25,
+      "source": "class_totals.csv"
+    },
+    "wheat_images": {
+      "value": 1774,
+      "source": "class_totals.csv"
+    },
+    "wheat_boxes": {
+      "value": 2168,
+      "source": "class_totals.csv"
+    },
+    "wheat_median_box_area_pct": {
+      "value": 27.44,
+      "source": "class_totals.csv"
+    },
+    "maize_images": {
+      "value": 1200,
+      "source": "class_totals.csv"
+    },
+    "maize_boxes": {
+      "value": 1200,
+      "source": "class_totals.csv"
+    },
+    "maize_median_box_area_pct": {
+      "value": 98.29,
+      "source": "class_totals.csv"
+    },
+    "rice_images": {
+      "value": 1440,
+      "source": "class_totals.csv"
+    },
+    "rice_boxes": {
+      "value": 1667,
+      "source": "class_totals.csv"
+    },
+    "rice_median_box_area_pct": {
+      "value": 48.44,
+      "source": "class_totals.csv"
+    },
+    "soybean_images": {
+      "value": 3921,
+      "source": "class_totals.csv"
+    },
+    "soybean_boxes": {
+      "value": 31997,
+      "source": "class_totals.csv"
+    },
+    "soybean_median_box_area_pct": {
+      "value": 0.13,
+      "source": "class_totals.csv"
+    },
+    "train_images": {
+      "value": 10053,
+      "source": "class_stats.csv"
+    },
+    "train_boxes": {
+      "value": 35403,
+      "source": "class_stats.csv"
+    },
+    "train_background": {
+      "value": 20,
+      "source": "class_stats.csv"
+    },
+    "val_images": {
+      "value": 880,
+      "source": "class_stats.csv"
+    },
+    "val_boxes": {
+      "value": 3456,
+      "source": "class_stats.csv"
+    },
+    "val_background": {
+      "value": 2,
+      "source": "class_stats.csv"
+    },
+    "test_images": {
+      "value": 413,
+      "source": "class_stats.csv"
+    },
+    "test_boxes": {
+      "value": 1702,
+      "source": "class_stats.csv"
+    },
+    "test_background": {
+      "value": 0,
+      "source": "class_stats.csv"
+    }
+  }
+}

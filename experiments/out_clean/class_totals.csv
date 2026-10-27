@@ -1,0 +1,6 @@
+crop,train_images,val_images,test_images,images,boxes,median_box_area_pct
+sugarcane,2741,182,88,3011,3529,52.25
+wheat,1638,103,33,1774,2168,27.44
+maize,840,240,120,1200,1200,98.29
+rice,1347,64,29,1440,1667,48.44
+soybean,3487,291,143,3921,31997,0.13

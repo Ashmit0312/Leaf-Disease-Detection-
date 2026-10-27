@@ -1,0 +1,16 @@
+split,crop,images,boxes,background_images,boxes_per_image,median_box_area_pct,boxes_lt_1pct_area
+train,sugarcane,2741,3206,9,1.17,52.25,12
+train,wheat,1638,1999,8,1.22,27.44,8
+train,maize,840,840,0,1.0,98.29,0
+train,rice,1347,1561,0,1.16,48.44,335
+train,soybean,3487,27797,3,7.97,0.13,20726
+val,sugarcane,182,223,0,1.23,44.51,1
+val,wheat,103,127,2,1.23,28.31,0
+val,maize,240,240,0,1.0,98.37,0
+val,rice,64,76,0,1.19,15.09,25
+val,soybean,291,2790,0,9.59,0.08,2235
+test,sugarcane,88,100,0,1.14,48.14,0
+test,wheat,33,42,0,1.27,29.25,0
+test,maize,120,120,0,1.0,98.37,0
+test,rice,29,30,0,1.03,19.44,6
+test,soybean,143,1410,0,9.86,0.1,1147

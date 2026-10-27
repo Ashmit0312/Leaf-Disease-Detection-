@@ -98,3 +98,23 @@ python crop_identify.py --image path/to/leaf.jpg
 ## Acknowledgements
 
 Ultralytics YOLOv8, Roboflow Universe datasets, Groq / Meta Llama 4.
+---
+
+## 🔬 Paper Revision Experiments
+
+```bash
+# 1. Re-merge sources (polygon labels → boxes) into a fresh folder
+python merge_datasets.py --out dataset_v2
+
+# 2. Leakage audit + per-crop stats (no weights needed)
+python experiments/run_all.py --data dataset_v2 --steps dedup,stats --out experiments/out
+
+# 3. Build the group-aware split with no cross-split duplicates
+python experiments/clean_split.py --data dataset_v2 --report experiments/out/dedup_report.csv --out dataset_clean
+
+# 4. Retrain on Colab with experiments/retrain_colab.ipynb, then evaluate locally
+#    (VLM step reads GROQ_API_KEY from the environment and resumes from its cache)
+python experiments/run_all.py --data dataset_clean --weights weights/v8n_best.pt --out experiments/out_clean --steps detect,vlm,fusion,latency
+```
+
+Every number used in the paper is listed with its source file in `experiments/out*/summary.md`.

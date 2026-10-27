@@ -35,10 +35,10 @@ from pathlib import Path
 # Change these paths to wherever your 5 downloaded Roboflow folders actually are
 CROP_SOURCES = {
     0: "Sugar-Cane-Disease-Model-2",
-    1: "wheat_dataset",
-    2: "maize_dataset",
-    3: "rice_dataset",
-    4: "soybean_dataset",
+    1: "Wheat-plant-diseases-6",
+    2: "maize_1200",
+    3: "Rice-plant-disease-detection-1",
+    4: "soy-leaf-disease-15",
 }
 
 OUTPUT_DIR = "dataset"
@@ -219,18 +219,41 @@ def copy_flat_dataset(class_id: int, src: str):
     print(f"  [✓] class {class_id} ({src}): {count} images split & copied")
 
 
+def polygon_to_box(coords: list[float]) -> list[float]:
+    """Polygon (x1 y1 x2 y2 ...) → YOLO box (xc yc w h), clipped to [0, 1]."""
+    xs = [min(max(v, 0.0), 1.0) for v in coords[0::2]]
+    ys = [min(max(v, 0.0), 1.0) for v in coords[1::2]]
+    x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+    return [(x0 + x1) / 2, (y0 + y1) / 2, x1 - x0, y1 - y0]
+
+
+POLYGON_STATS = {"files": 0, "rows": 0}
+
+
 def rewrite_label(src: Path, dst: Path, expected_class_id: int):
     """
     Copy label file, replacing the class ID on every line with expected_class_id.
     Handles single-class datasets where source labels might use class 0.
+
+    Some Roboflow exports mix segmentation polygons with box rows in one file,
+    which Ultralytics rejects as corrupt. Polygon rows are converted to their
+    bounding box so every output file is pure detection format.
     """
     lines = src.read_text().strip().splitlines()
     new_lines = []
+    had_polygon = False
     for line in lines:
         parts = line.strip().split()
-        if len(parts) >= 5:
-            parts[0] = str(expected_class_id)   # override class ID
-            new_lines.append(" ".join(parts))
+        if len(parts) == 5:
+            box = parts[1:]
+        elif len(parts) > 5 and len(parts) % 2 == 1:
+            box = [f"{v:.6f}" for v in polygon_to_box([float(v) for v in parts[1:]])]
+            had_polygon = True
+            POLYGON_STATS["rows"] += 1
+        else:
+            continue
+        new_lines.append(" ".join([str(expected_class_id)] + box))   # override class ID
+    POLYGON_STATS["files"] += had_polygon
     dst.write_text("\n".join(new_lines))
 
 
@@ -266,6 +289,11 @@ def print_summary():
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Merge per-crop Roboflow exports")
+    parser.add_argument("--out", default=OUTPUT_DIR, help="Output dataset folder")
+    OUTPUT_DIR = parser.parse_args().out
+
     make_dirs()
     print("\n[→] Merging datasets...\n")
 
@@ -287,5 +315,7 @@ if __name__ == "__main__":
             print(f"  [!] Could not detect folder structure for '{src}' — skipping. "
                   f"Check that it contains train/images/, images/train/, or loose image files.")
 
+    print(f"\n[✓] Polygon rows converted to boxes: {POLYGON_STATS['rows']} "
+          f"in {POLYGON_STATS['files']} label files")
     write_yaml()
     print_summary()

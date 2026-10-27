@@ -6,3 +6,9 @@ pyyaml
 opencv-python
 matplotlib
 roboflow
+imagehash
+onnx
+onnxruntime
+onnxslim
+psutil
+py-cpuinfo

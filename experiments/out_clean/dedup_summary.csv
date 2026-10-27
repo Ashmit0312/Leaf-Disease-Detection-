@@ -1,0 +1,5 @@
+type,splits,pairs
+near_phash,test-test,2
+near_phash,train-train,1689
+near_phash,val-val,20
+near_phash_dihedral,val-val,2

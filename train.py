@@ -23,9 +23,10 @@ import yaml, os
 # ─── 1. Dataset Config ────────────────────────────────────────────────────────
 
 DATASET_YAML = "crop_dataset.yaml"
+DATASET_DIR  = os.environ.get("CROP_DATASET", "dataset")
 
 dataset_config = {
-    "path": os.path.abspath("dataset"),   # root dir
+    "path": os.path.abspath(DATASET_DIR), # root dir
     "train": "images/train",
     "val":   "images/val",
     "test":  "images/test",
@@ -56,7 +57,14 @@ def train(
     device: str     = "0",          # "0" for GPU, "cpu" for CPU
     project: str    = "runs/crop_detect",
     name: str       = "exp1",
+    save_period: int = 5,           # checkpoint every N epochs (survives session resets)
 ):
+    last = os.path.join(project, name, "weights", "last.pt")
+    if os.path.exists(last):
+        print(f"\n[→] Resuming from {last} ...")
+        YOLO(last).train(resume=True)
+        return os.path.join(project, name, "weights", "best.pt")
+
     model_name = f"yolov8{model_size}.pt"
     print(f"\n[→] Loading pretrained {model_name} ...")
     model = YOLO(model_name)
@@ -70,6 +78,9 @@ def train(
         device    = device,
         project   = project,
         name      = name,
+        exist_ok  = True,
+        save_period = save_period,
+        seed      = 0,
         # Augmentation (helps with field variability)
         hsv_h     = 0.015,
         hsv_s     = 0.7,
@@ -85,7 +96,8 @@ def train(
         shear     = 2.0,
     )
 
-    best_weights = f"{project}/{name}/weights/best.pt"
+    # Ultralytics may nest a relative project under runs/detect/ — use its real save_dir
+    best_weights = str(model.trainer.save_dir / "weights" / "best.pt")
     print(f"\n[✓] Training complete. Best weights → {best_weights}")
     return best_weights
 
@@ -144,10 +156,15 @@ if __name__ == "__main__":
     parser.add_argument("--size",    default="n",   help="YOLOv8 model size: n/s/m/l/x")
     parser.add_argument("--epochs",  type=int, default=100)
     parser.add_argument("--device",  default="0")
+    parser.add_argument("--batch",   type=int, default=16)
+    parser.add_argument("--project", default="runs/crop_detect", help="Use an absolute path (e.g. on Drive)")
+    parser.add_argument("--name",    default="exp1")
+    parser.add_argument("--save-period", type=int, default=5)
     args = parser.parse_args()
 
     if args.mode == "train":
-        w = train(model_size=args.size, epochs=args.epochs, device=args.device)
+        w = train(model_size=args.size, epochs=args.epochs, batch=args.batch, device=args.device,
+                  project=args.project, name=args.name, save_period=args.save_period)
         validate(w)
 
     elif args.mode == "val":

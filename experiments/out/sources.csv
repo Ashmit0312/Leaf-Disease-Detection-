@@ -1,0 +1,6 @@
+crop,folder,workspace,project,version,license,url
+sugarcane,Sugar-Cane-Disease-Model-2,sugarcaneproject,sugar-cane-disease-model,2,CC BY 4.0,https://universe.roboflow.com/sugarcaneproject/sugar-cane-disease-model/dataset/2
+wheat,Wheat-plant-diseases-6,final-year-project-iukji,wheat-plant-diseases-tymqc,6,CC BY 4.0,https://universe.roboflow.com/final-year-project-iukji/wheat-plant-diseases-tymqc/dataset/6
+maize,maize_1200,maize-specific,maize-leaf-diseases,1,CC BY 4.0,https://universe.roboflow.com/maize-specific/maize-leaf-diseases/dataset/1
+rice,Rice-plant-disease-detection-1,rice-dataset-evccc,rice-plant-disease-detection-ibpov,1,CC BY 4.0,https://universe.roboflow.com/rice-dataset-evccc/rice-plant-disease-detection-ibpov/dataset/1
+soybean,soy-leaf-disease-15,tcc-ei06d,soy-leaf-disease,15,CC BY 4.0,https://universe.roboflow.com/tcc-ei06d/soy-leaf-disease/dataset/15
